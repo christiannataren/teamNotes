@@ -26,13 +26,18 @@ controller.updateUser = async function (req, res, next) {
 }
 controller.createUser = async function (req, res, next) {
     let user = { name: req.body.name, email: req.body.email, password: req.body.password }
+    let userExists
+    try {
+        userExists = await userModel.getUserByEmail(user.email)
+    } catch {
+        next(utils.constructError(strings.ERROR_GETTING_USER))
+    }
 
-    let userExists = await userModel.getUserByEmail(user.email)
 
     if (!userExists) {
         user.password = await password.hashPassword(user.password)
         try {
-            let inserted = userModel.insertUser(user)
+            let inserted = await userModel.insertUser(user)
             res.status(200).json(utils.sendSuccess(strings.USER_CREATED))
         } catch {
             next(utils.constructError(strings.ERROR_CREATING_USER))

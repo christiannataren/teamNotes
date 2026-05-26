@@ -5,6 +5,7 @@ strings.ERROR_CREATING_CONTACT = "Error creating contact";
 strings.USER_NOT_FOUND = "User not found";
 strings.EMAIL_EXISTS = "A user with this email address already exists";
 strings.ERROR_CREATING_USER = "Error creating user";
+strings.ERROR_GETTING_USER = "Error getting user";
 strings.USER_CREATED = "User created successfully";
 
 // Validation Messages
