@@ -3,6 +3,7 @@ const db = require("./models/db.js")
 const express = require('express')
 const app = express()
 const userRoutes = require("./routes/userRoute.js")
+const categoryRoute = require("./routes/categoryRoute.js")
 
 app.use(express.json())
 app.use((req, res, next) => {
@@ -22,6 +23,7 @@ app.use((err, req, res, next) => {
 
 
 app.use("/user", userRoutes)
+app.use("/category", categoryRoute)
 
 // app.use("/", async (req, res, next) => {
 //     let d = await userModel.insertUser()

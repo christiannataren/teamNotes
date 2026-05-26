@@ -4,6 +4,7 @@ const controller = {}
 const e = require("express");
 const utils = require("../utils/utils.js")
 const strings = require("../utils/strings.js")
+
 const userModel = require("../models/userModel.js");
 const password = require("../auth/password.js")
 
@@ -36,6 +37,7 @@ controller.createUser = async function (req, res, next) {
 
     if (!userExists) {
         user.password = await password.hashPassword(user.password)
+        user.createdAt = new Date()
         try {
             let inserted = await userModel.insertUser(user)
             res.status(200).json(utils.sendSuccess(strings.USER_CREATED))
