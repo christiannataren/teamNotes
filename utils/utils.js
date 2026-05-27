@@ -1,13 +1,14 @@
 
 
-utils = {}
+const utils = {}
 
 utils.constructError = function (message, error = 500) {
 
     message = message.errors || message
     return {
         message: message,
-        status: error
+        status: error,
+        custom: true
     }
 }
 

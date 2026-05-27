@@ -4,7 +4,9 @@ const validator = require("../validations/validator")
 const validateRules = require("../validations/validateRules")
 const categoryController = require("../controllers/categoryController")
 
-router.post('/create', validateRules.addCategory(), validator.validateData, categoryController.addCategory)
+router.post('/', validateRules.addCategory(), validator.validateData, categoryController.addCategory)
+router.get('/', categoryController.getCategoriesByUser)
+router.delete('/:id', validateRules.validateId(), validator.validateData, categoryController.removeCategory)
 
 
 module.exports = router

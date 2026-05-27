@@ -1,19 +1,21 @@
+require('dotenv').config();
+const { env } = require('node:process');
 const db = require("./models/db.js")
-
 const express = require('express')
 const app = express()
 const userRoutes = require("./routes/userRoute.js")
 const categoryRoute = require("./routes/categoryRoute.js")
+const teamsRoute = require("./routes/teamRoute.js")
+const auth = require("./auth/auth.js")
 
 app.use(express.json())
-app.use((req, res, next) => {
-    if (!req.is("application/json")) {
-        next(utils.constructError("Unsupported Request"))
+// app.use((req, res, next) => {
+//     if (!req.is("application/json")) {
+//         return next(utils.constructError("Unsupported Request"))
 
-    } else {
-        next()
-    }
-})
+//     }
+//      next()
+// })
 app.use((err, req, res, next) => {
     if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
         return next(utils.constructError("Malformed JSON"));
@@ -21,9 +23,12 @@ app.use((err, req, res, next) => {
     next(err);
 });
 
+app.use(auth.verifySesion)
 
-app.use("/user", userRoutes)
-app.use("/category", categoryRoute)
+
+app.use("/users", userRoutes)
+app.use("/categories", categoryRoute)
+app.use("/teams", teamsRoute)
 
 // app.use("/", async (req, res, next) => {
 //     let d = await userModel.insertUser()
@@ -33,11 +38,16 @@ app.use("/category", categoryRoute)
 
 
 app.use((err, req, res, next) => {
+    if (err.stack) {
+        console.error(err.stack);
+    }
 
-    console.error(err.stack);
+    if (!err.custom) {
+        err.message = "ERROR INTERNAL SERVER"
+    }
     res.status(err.status || 500).json({
         error: {
-            message: err.message || "Internal Server Error",
+            message: err.message,
         }
     });
 });

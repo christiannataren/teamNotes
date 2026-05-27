@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-password = {}
+const password = {}
 
 
 

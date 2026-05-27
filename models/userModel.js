@@ -2,7 +2,7 @@ const db = require('./db.js')
 
 
 const collection = "users"
-model = {}
+const model = {}
 
 
 
@@ -16,7 +16,10 @@ model.insertUser = async function (user) {
 
 }
 
-
+model.getUserById = async function (id) {
+    let user = await db.getByID(collection, id)
+    return user
+}
 model.getUserByEmail = async function (email) {
     let user = await db.getOne(collection, { email: email })
     return user

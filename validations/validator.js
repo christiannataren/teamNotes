@@ -1,6 +1,6 @@
 const { validationResult } = require("express-validator")
 const utils = require("../utils/utils")
-validator = {}
+const validator = {}
 
 validator.validateData = async (req, res, next) => {
     let errors = []
