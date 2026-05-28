@@ -6,7 +6,7 @@ const utils = require("../utils/utils")
 const strings = require("../utils/strings")
 
 controller.createTeam = async function (req, res, next) {
-    console.log("ID: " + req._id)
+    
     const team = { name: req.body.name, description: req.body.description, user: new ObjectId(req._id), members: [], createdAt: new Date() }
     try {
         const exist = await model.getTeamByUserAndName(new ObjectId(req._id), team.name);

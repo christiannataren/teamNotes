@@ -127,6 +127,29 @@
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "name"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "description"
+                }
+              },
+              "required": [
+                "name",
+                "description"
+              ]
+            }
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -195,6 +218,22 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                }
+              },
+              "required": [
+                "email"
+              ]
+            }
           }
         ],
         "responses": {

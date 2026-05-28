@@ -1,4 +1,6 @@
 const swaggerAutogen = require('swagger-autogen')();
+require('dotenv').config();
+const { env } = require('node:process');
 
 const doc = {
     security: [{ bearerAuth: [] }],
@@ -16,6 +18,8 @@ const doc = {
 
     host: 'teamnotes-djf1.onrender.com',
     schemes: ["https"]
+    // host: 'localhost:8080',
+    // schemes: ["http"]
 
 };
 
