@@ -13,6 +13,20 @@ validateRules.createUser = () => {
         body("password").notEmpty().withMessage(strings.PASSWORD_NOT_EMPTY).isLength({ min: 5 }).withMessage(strings.PASSWORD_SHORT),
     ]
 }
+validateRules.createNote = () => {
+    return [
+        body("*").isString().escape().trim(),
+        body("content").notEmpty().withMessage(strings.NOTE_NOT_EMPTY),
+        body("category").isString().escape().trim().isMongoId().withMessage(strings.BAD_CATEGORY_ID),
+        body("team").isString().escape().trim().isMongoId().withMessage(strings.MALFORMED_ID)
+    ]
+}
+validateRules.updateNote = () => {
+    return [
+        body("*").isString().escape().trim(),
+        body("content").notEmpty().withMessage(strings.NOTE_NOT_EMPTY)
+    ]
+}
 validateRules.addMember = () => {
     return [
         body("*").isString().escape().trim(),

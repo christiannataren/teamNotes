@@ -1,9 +1,6 @@
 const db = require('./db.js')
-
-
-const collection = "teams"
 const model = {}
-
+const collection = "teams"
 
 model.createTeam = async function (team) {
     const insert = await db.insertData(collection, team)
@@ -47,6 +44,7 @@ model.updateTeam = async function (id, data) {
     const update = await db.updateByID(collection, id, data)
     return update
 }
+
 
 
 module.exports = model

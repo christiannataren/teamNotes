@@ -3,8 +3,13 @@ const router = new express.Router();
 const controller = require("../controllers/teamController")
 const validator = require("../validations/validator")
 const validateRules = require("../validations/validateRules")
+const noteController = require("../controllers/noteController")
 
 router.get("/", controller.getTeams)
+
+
+router.get("/:id/notes", validateRules.validateId(), validator.validateData, noteController.getTeamNotes)
+
 router.post("/", validateRules.createTeam(), validator.validateData, controller.createTeam)
 router.delete("/:id", validateRules.validateId(), validator.validateData, controller.deleteTeam)
 

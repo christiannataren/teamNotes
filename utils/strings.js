@@ -9,12 +9,17 @@ strings.ERROR_CREATING_TEAM = "Error creating team";
 strings.USER_NOT_FOUND = "User not found";
 strings.USER_NOT_MEMBER = "This user is not member of this team";
 strings.TEAM_NOT_FOUND = "Team not found";
+strings.NOTE_NOT_FOUND = "Note not found";
 strings.CATEGORY_NOT_FOUND = "Category not found";
 strings.EMAIL_EXISTS = "A user with this email address already exists";
 strings.ERROR_CREATING_USER = "Error creating user";
 strings.ERROR_ADDING_USER = "Error adding user";
+strings.ERROR_ADDING_NOTE = "Error adding note";
 strings.ERROR_GETTING_USER = "Error getting user";
+strings.ERROR_GETTING_NOTES = "Error getting notes";
 strings.ERROR_REMOVING_USER = "Error removing user from this team";
+strings.ERROR_REMOVING_NOTE = "Error removing this note";
+strings.ERROR_UPDATING_NOTE = "Error updating this note";
 strings.USER_CREATED = "User created successfully";
 strings.USER_ADDED = "User added successfully";
 strings.LONG_NAME_CATEGORY = "Try a shorter name max: 40 characters ";
@@ -24,6 +29,7 @@ strings.ALREADY_MEMBER = "This user is member of this team";
 
 // Validation Messages
 strings.NAME_NOT_EMPTY = "Name is required";
+strings.NOTE_NOT_EMPTY = "Add a content for your note";
 strings.LASTNAME_NOT_EMPTY = "Last name is required";
 strings.COLOR_NOT_EMPTY = "Favorite color is required";
 strings.EMAIL_NOT_EMPTY = "Email is required";
@@ -33,16 +39,21 @@ strings.PASSWORD_SHORT = "Minimum password length is 5"
 strings.CATEGORY_EXISTS = "Category name exists, try a different name"
 strings.TEAM_EXISTS = "Team name exists, try a different name"
 strings.UNAUTHORIZED = "Unauthorized: No token provided"
+strings.UNAUTHORIZED_OPERATION = "Unauthorized: Operation not permitted"
 strings.ERROR_TEAM_OWNERSHIP = "This team does not belong to you or does not exists"
 
 // Format Errors
 strings.EMAIL_BAD_FORMAT = "Invalid email format";
 strings.BAD_REQUEST = "Bad request";
+strings.BAD_CATEGORY_ID = "Category ID malformed";
+strings.MALFORMED_ID = "ID malformed";
 
 // Success/Fail Messages
 strings.USER_UPDATED = "User updated successfully";
+strings.NOTE_UPDATED = "Note updated successfully";
 strings.TEAM_UPDATED = "Team updated successfully";
 strings.TEAM_DELETED = "Team deleted successfully";
+strings.NOTE_DELETED = "Note deleted successfully";
 strings.CONTACT_DELETED_FAIL = "Error deleting contact";
 strings.CATEGORY_DELETED = "Category deleted successfully";
 strings.USER_REMOVED = "User removed successfully";

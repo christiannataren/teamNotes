@@ -47,7 +47,7 @@ db.getByID = async function (collection, id) {
 }
 db.deleteByID = async function (collection, id) {
     const col = await db.getCollection(collection);
-    let result = await col.deleteOne({ _id: new ObjectId(id) });
+    let result = await col.deleteOne({ _id: id });
     return result;
 }
 db.deleteBy = async function (collection, filter) {

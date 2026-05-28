@@ -6,7 +6,12 @@ const app = express()
 const userRoutes = require("./routes/userRoute.js")
 const categoryRoute = require("./routes/categoryRoute.js")
 const teamsRoute = require("./routes/teamRoute.js")
+const notesRoute = require("./routes/noteRoute.js")
 const auth = require("./auth/auth.js")
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
+
+
 
 app.use(express.json())
 // app.use((req, res, next) => {
@@ -26,9 +31,13 @@ app.use((err, req, res, next) => {
 app.use(auth.verifySesion)
 
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 app.use("/users", userRoutes)
 app.use("/categories", categoryRoute)
 app.use("/teams", teamsRoute)
+app.use("/notes", notesRoute)
 
 // app.use("/", async (req, res, next) => {
 //     let d = await userModel.insertUser()
