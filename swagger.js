@@ -14,7 +14,8 @@ const doc = {
     //     }
     // },
 
-    host: 'localhost:8080',
+    host: 'teamnotes-djf1.onrender.com',
+    schemes: ["https"]
 
 };
 

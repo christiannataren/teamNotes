@@ -32,7 +32,6 @@ auth.verifySesion = async function (req, res, next) {
 
         }
     }
-    // console.log(req.path + ": " + publicAccess)
     req._id = "6a17aa0b60810d552f91b154"
     if (req._id || publicAccess) {
         next()
