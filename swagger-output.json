@@ -5,10 +5,10 @@
     "description": "Create notes and shared them with your team",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "teamnotes-djf1.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/users/": {
