@@ -24,7 +24,6 @@ auth.verifySesion = async function (req, res, next) {
     )
     if (req.path.includes("api-docs")) {
         try {
-            console.log(req.path.split("/")[1])
             if (req.path.split("/")[1] == "api-docs") {
                 publicAccess = true
             }
