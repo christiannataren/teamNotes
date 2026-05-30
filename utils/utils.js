@@ -17,4 +17,14 @@ utils.sendSuccess = function (message) {
 }
 
 
+utils.isMemberTeam = function (user_id, team) {
+    return team.user.toString == user_id.toString() || team.members.some(member => member._id.toString() == user_id.toString())
+}
+
+
+utils.isOwnerTeam = function (user_id, team) {
+    return team.user.toString() == user_id.toString()
+}
+
+
 module.exports = utils

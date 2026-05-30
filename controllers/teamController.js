@@ -6,7 +6,7 @@ const utils = require("../utils/utils")
 const strings = require("../utils/strings")
 
 controller.createTeam = async function (req, res, next) {
-    
+
     const team = { name: req.body.name, description: req.body.description, user: new ObjectId(req._id), members: [], createdAt: new Date() }
     try {
         const exist = await model.getTeamByUserAndName(new ObjectId(req._id), team.name);
@@ -34,6 +34,27 @@ controller.createTeam = async function (req, res, next) {
 
 }
 
+
+controller.getTeam = async function (req, res, next) {
+    const teamId = req.params.id
+    try {
+        const team = await model.getTeamById(new ObjectId(teamId))
+        const userId = req._id
+        if (team) {
+            if (utils.isMemberTeam(userId, team) || utils.isOwnerTeam(userId, team)) {
+                res.status(200).json(team)
+            } else {
+                return next(utils.constructError(strings.UNAUTHORIZED_OPERATION, 401))
+            }
+        } else {
+            return next(utils.constructError(strings.TEAM_NOT_FOUND, 404))
+        }
+    } catch (error) {
+        console.log(error)
+        return next(utils.constructError(strings.ERROR_GETTING_TEAM))
+    }
+
+}
 controller.deleteTeam = async function (req, res, next) {
     const id = req.params.id
     try {

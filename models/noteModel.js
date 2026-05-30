@@ -29,4 +29,9 @@ model.getNotesByTeam = async function (idTeam) {
     return notes
 }
 
+model.getNotesByUser = async function (userId) {
+    const notes = await db.getAllFilter(collection, { createdBy: userId })
+    return notes
+
+}
 module.exports = model

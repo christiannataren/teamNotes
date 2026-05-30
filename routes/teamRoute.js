@@ -10,6 +10,8 @@ router.get("/", controller.getTeams)
 
 router.get("/:id/notes", validateRules.validateId(), validator.validateData, noteController.getTeamNotes)
 
+router.get("/:id", validateRules.validateId(), validator.validateData, controller.getTeam)
+
 
 router.post("/", /*
       #swagger.parameters['body'] = {

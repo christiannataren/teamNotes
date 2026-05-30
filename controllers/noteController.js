@@ -7,14 +7,7 @@ const e = require("express")
 const controller = {}
 
 
-controller.isMember = function (user_id, team) {
-    return team.user.toString == user_id.toString() || team.members.some(member => member._id.toString() == user_id.toString())
-}
 
-
-controller.isOwner = function (user_id, team) {
-    return team.user.toString() == user_id.toString()
-}
 controller.createNote = async function (req, res, next) {
     const note = {
         content: req.body.content,
@@ -30,7 +23,7 @@ controller.createNote = async function (req, res, next) {
         if (!team) {
             return next(utils.constructError(strings.TEAM_NOT_FOUND))
         }
-        const isMember = controller.isMember(req._id, team) || controller.isOwner(req._id, team)
+        const isMember = utils.isMemberTeam(req._id, team) || utils.isOwnerTeam(req._id, team)
         if (!isMember) {
             return next(utils.constructError(strings.UNAUTHORIZED_OPERATION, 401))
         }
@@ -56,7 +49,7 @@ controller.deleteNote = async function (req, res, next) {
 
         const team = await modelTeam.getTeamById(new ObjectId(note.teamId))
         console.log(team)
-        const isOwner = controller.isOwner(req._id, team)
+        const isOwner = utils.isOwnerTeam(req._id, team)
         const isCreator = note.createdBy.toString() === user_id.toString()
 
         if (!isOwner && !isCreator) {
@@ -86,7 +79,7 @@ controller.updateNote = async function (req, res, next) {
         }
 
         const team = await modelTeam.getTeamById(new ObjectId(note.teamId))
-        const isOwner = controller.isOwner(req._id, team)
+        const isOwner = utils.isOwnerTeam(req._id, team)
         const isCreator = note.createdBy.toString() === user_id.toString()
 
         if (!isOwner && !isCreator) {
@@ -115,9 +108,9 @@ controller.getTeamNotes = async function (req, res, next) {
         if (!team) {
             return next(utils.constructError(strings.TEAM_NOT_FOUND, 404))
         }
-        const readRights = controller.isMember(req._id, team) || controller.isOwner(req._id, team)
+        const readRights = utils.isMemberTeam(req._id, team) || utils.isOwnerTeam(req._id, team)
         if (!readRights) {
-            return next(utils.constructError(strings.UNAUTHORIZED_OPERATION))
+            return next(utils.constructError(strings.UNAUTHORIZED_OPERATION, 401))
         }
         const notes = await model.getNotesByTeam(new ObjectId(idTeam))
         res.status(200).json(notes)
@@ -125,10 +118,16 @@ controller.getTeamNotes = async function (req, res, next) {
         console.log(error)
         return next(utils.constructError(strings.ERROR_GETTING_NOTES))
     }
-
-
-
-
+}
+controller.getNotes = async function (req, res, next) {
+    const idUser = req._id
+    try {
+        const notes = await model.getNotesByUser(new ObjectId(idUser))
+        res.status(200).json(notes)
+    } catch (error) {
+        console.log(error)
+        return next(utils.constructError(strings.ERROR_GETTING_NOTES))
+    }
 }
 
 module.exports = controller
