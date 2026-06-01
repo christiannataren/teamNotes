@@ -5,7 +5,10 @@ const validateRules = require("../validations/validateRules")
 const controller = require("../controllers/noteController")
 
 router.post("/", validateRules.createNote(), validator.validateData, controller.createNote)
+
+
 router.get("/", controller.getNotes)
+router.get("/:id", validateRules.validateId(), validator.validateData, controller.getNote)
 
 
 router.delete("/:id", validateRules.validateId(), validator.validateData, controller.deleteNote)

@@ -130,4 +130,31 @@ controller.getNotes = async function (req, res, next) {
     }
 }
 
+
+controller.getNote = async function (req, res, next) {
+    const idUser = req._id
+    const idNote = req.params.id
+    try {
+        const note = await model.getNote(new ObjectId(idNote))
+        if (note) {
+            const team = await modelTeam.getTeamById(new ObjectId(note.teamId))
+            const isMember = utils.isMemberTeam(idUser, team)
+            const isOwner = utils.isOwnerTeam(idUser, team)
+            console.log("Memeber: " + isMember + "  Owner: " + isOwner)
+            if (isMember || isOwner) {
+                res.status(200).json(note)
+            } else {
+                return next(utils.constructError(strings.UNAUTHORIZED_OPERATION, 401))
+            }
+
+        } else {
+            return next(utils.constructError(strings.NOTE_NOT_FOUND, 404))
+        }
+
+    } catch (error) {
+        console.log(error)
+        return next(utils.constructError(strings.ERROR_GETTING_NOTE))
+    }
+}
+
 module.exports = controller

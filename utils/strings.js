@@ -17,6 +17,7 @@ strings.ERROR_ADDING_USER = "Error adding user";
 strings.ERROR_ADDING_NOTE = "Error adding note";
 strings.ERROR_GETTING_USER = "Error getting user";
 strings.ERROR_GETTING_NOTES = "Error getting notes";
+strings.ERROR_GETTING_NOTE = "Error getting note";
 strings.ERROR_REMOVING_USER = "Error removing user from this team";
 strings.ERROR_REMOVING_NOTE = "Error removing this note";
 strings.ERROR_UPDATING_NOTE = "Error updating this note";

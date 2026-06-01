@@ -31,7 +31,6 @@ auth.verifySesion = async function (req, res, next) {
 
         }
     }
-    req._id = "6a17aa0b60810d552f91b154"
     if (req._id || publicAccess) {
         next()
     } else {
