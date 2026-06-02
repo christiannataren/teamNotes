@@ -24,13 +24,21 @@ router.post("/", /*
     */ validateRules.createTeam(), validator.validateData, controller.createTeam)
 router.delete("/:id", validateRules.validateId(), validator.validateData, controller.deleteTeam)
 
-router.put("/:id", validateRules.validateId(), validateRules.createTeam(), validator.validateData, controller.updateTeam)
+router.put("/:id", /*
+      #swagger.parameters['body'] = {
+        in: 'body',
+        schema: {
+          $name: 'name',
+          $description: 'description'
+        }
+      }
+    */validateRules.validateId(), validateRules.createTeam(), validator.validateData, controller.updateTeam)
 
 router.post("/:id/members/",/*
       #swagger.parameters['body'] = {
         in: 'body',
         schema: {
-          $email: 'email'
+          $username: 'username'
         }
       }
     */  validateRules.validateId(), validateRules.addMember(), validator.validateData, controller.addMember)

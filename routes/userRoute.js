@@ -4,7 +4,7 @@ const userController = require("../controllers/userController")
 const validator = require("../validations/validator")
 const validateRules = require("../validations/validateRules")
 
-router.post('/', validateRules.createUser(), validator.validateData, userController.createUser)
+// router.post('/', validateRules.createUser(), validator.validateData, userController.createUser)
 router.put('/', validateRules.updateUser(), validator.validateData, userController.updateUser)
 // router.get('/:id', contactsCtrl.getByID)
 // router.get('/insert', contactsCtrl.insert)

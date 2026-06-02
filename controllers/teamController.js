@@ -82,12 +82,12 @@ controller.getTeams = async function (req, res, next) {
 
 controller.addMember = async function (req, res, next) {
     const id_team = req.params.id
-    const email = req.body.email
+    const username = req.body.username
     try {
 
         const team = await model.getTeamByUserAndId(new ObjectId(req._id), new ObjectId(id_team))
         if (team) {
-            const invited = await userModel.getUserByEmail(email)
+            const invited = await userModel.getUserByEmail(username)
             if (!invited) {
                 return next(utils.constructError(strings.USER_NOT_FOUND, 404))
             } else {
@@ -126,7 +126,6 @@ controller.updateTeam = async function (req, res, next) {
 
         const team = await model.getTeamByUserAndId(new ObjectId(req._id), new ObjectId(id_team))
         if (team) {
-
             const update = await model.updateTeam(new ObjectId(id_team), { name, description })
             if (update.matchedCount == 1) {
                 res.status(200).json(utils.sendSuccess(strings.TEAM_UPDATED))

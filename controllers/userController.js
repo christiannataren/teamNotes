@@ -13,7 +13,7 @@ const { ObjectId } = require('mongodb');
 
 
 controller.updateUser = async function (req, res, next) {
-    let user = { name: req.body.name, email: req.body.email }
+    let user = { name: req.body.name }
     let mUser
     try {
         mUser = await userModel.getUserById(new ObjectId(req._id));

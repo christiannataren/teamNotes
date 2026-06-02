@@ -2,22 +2,32 @@ const strings = require("../utils/strings")
 const utils = require("../utils/utils")
 auth = {}
 
+const userModel = require("../models/userModel")
 const ObjectId = require("mongodb")
+const { use } = require("passport")
+
+
 
 let publicPaths = [
     { path: "/users", method: "POST" },
     { path: "/users/", method: "POST" },
     { path: "/api-docs/", method: "POST" },
-    { path: "/api-docs/", method: "GET" }
+    { path: "/api-docs/", method: "GET" },
+    { path: "/login/", method: "POST" },
+    { path: "/login", method: "GET" },
+    { path: "/github/callback/", method: "GET" },
+    { path: "/", method: "GET" },
+    { path: "/github/callback", method: "GET" }
     // {path: "/use", method: "POST"}
 ]
 
 auth.verifySesion = async function (req, res, next) {
-    //////////CHANGE WHen IMPLEMENT AAUTHORIZATION
-    const authHeader = req.headers.authorization
-    if (authHeader && authHeader.startsWith('Bearer ')) {
-        const token = authHeader.split(' ')[1];
-        req._id = token
+    const user = req.session.user
+    if (user) {
+        const ghId = await userModel.getGithubUser(user.id)
+        if (ghId) {
+            req._id = ghId._id
+        }
     }
     let publicAccess = publicPaths.some(url =>
         url.path == req.path && url.method == req.method
@@ -30,6 +40,7 @@ auth.verifySesion = async function (req, res, next) {
         } catch {
 
         }
+
     }
     if (req._id || publicAccess) {
         next()

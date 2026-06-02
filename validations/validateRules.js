@@ -30,14 +30,14 @@ validateRules.updateNote = () => {
 validateRules.addMember = () => {
     return [
         body("*").isString().escape().trim(),
-        body("email").notEmpty().withMessage(strings.EMAIL_NOT_EMPTY).isEmail().withMessage(strings.EMAIL_BAD_FORMAT)
+        body("username").notEmpty().withMessage(strings.EMAIL_NOT_EMPTY)
     ]
 }
 validateRules.updateUser = () => {
     return [
         body("*").isString().escape().trim(),
         body("name").notEmpty().withMessage(strings.NAME_NOT_EMPTY),
-        body("email").notEmpty().withMessage(strings.EMAIL_NOT_EMPTY).isEmail().withMessage(strings.EMAIL_BAD_FORMAT)
+        // body("email").notEmpty().withMessage(strings.EMAIL_NOT_EMPTY).isEmail().withMessage(strings.EMAIL_BAD_FORMAT)
     ]
 }
 validateRules.addCategory = () => {

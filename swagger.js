@@ -16,10 +16,10 @@ const doc = {
     //     }
     // },
 
-    // host: 'teamnotes-djf1.onrender.com',
-    // schemes: ["https"]
-    host: 'localhost:8080',
-    schemes: ["http"]
+    host: 'teamnotes-djf1.onrender.com',
+    schemes: ["https"]
+    // host: 'localhost:8080',
+    // schemes: ["http"]
 
 };
 

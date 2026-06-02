@@ -33,13 +33,13 @@ strings.NAME_NOT_EMPTY = "Name is required";
 strings.NOTE_NOT_EMPTY = "Add a content for your note";
 strings.LASTNAME_NOT_EMPTY = "Last name is required";
 strings.COLOR_NOT_EMPTY = "Favorite color is required";
-strings.EMAIL_NOT_EMPTY = "Email is required";
+strings.EMAIL_NOT_EMPTY = "Username is required";
 strings.BIRTHDAY_NOT_EMPTY = "Birthday is required";
 strings.PASSWORD_NOT_EMPTY = "Password is required"
 strings.PASSWORD_SHORT = "Minimum password length is 5"
 strings.CATEGORY_EXISTS = "Category name exists, try a different name"
 strings.TEAM_EXISTS = "Team name exists, try a different name"
-strings.UNAUTHORIZED = "Unauthorized: No token provided"
+strings.UNAUTHORIZED = "Unauthorized: Please use /login to log in with your GitHub account"
 strings.UNAUTHORIZED_OPERATION = "Unauthorized: Operation not permitted"
 strings.ERROR_TEAM_OWNERSHIP = "This team does not belong to you or does not exists"
 

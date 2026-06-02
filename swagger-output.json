@@ -5,41 +5,13 @@
     "description": "Create notes and shared them with your team",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "teamnotes-djf1.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/users/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
       "put": {
         "description": "",
         "parameters": [
@@ -50,9 +22,6 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
-                },
-                "email": {
                   "example": "any"
                 }
               }
@@ -216,6 +185,27 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "name"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "description"
+                }
+              },
+              "required": [
+                "name",
+                "description"
+              ]
+            }
           }
         ],
         "responses": {
@@ -241,13 +231,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "email": {
+                "username": {
                   "type": "string",
-                  "example": "email"
+                  "example": "username"
                 }
               },
               "required": [
-                "email"
+                "username"
               ]
             }
           }
@@ -311,9 +301,33 @@
             "description": "OK"
           }
         }
+      },
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/notes/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
       "delete": {
         "description": "",
         "parameters": [

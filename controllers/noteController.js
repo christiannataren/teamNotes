@@ -48,7 +48,6 @@ controller.deleteNote = async function (req, res, next) {
         }
 
         const team = await modelTeam.getTeamById(new ObjectId(note.teamId))
-        console.log(team)
         const isOwner = utils.isOwnerTeam(req._id, team)
         const isCreator = note.createdBy.toString() === user_id.toString()
 
@@ -140,7 +139,6 @@ controller.getNote = async function (req, res, next) {
             const team = await modelTeam.getTeamById(new ObjectId(note.teamId))
             const isMember = utils.isMemberTeam(idUser, team)
             const isOwner = utils.isOwnerTeam(idUser, team)
-            console.log("Memeber: " + isMember + "  Owner: " + isOwner)
             if (isMember || isOwner) {
                 res.status(200).json(note)
             } else {

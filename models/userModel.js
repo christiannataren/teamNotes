@@ -1,3 +1,4 @@
+const { use } = require('passport')
 const db = require('./db.js')
 
 
@@ -21,7 +22,11 @@ model.getUserById = async function (id) {
     return user
 }
 model.getUserByEmail = async function (email) {
-    let user = await db.getOne(collection, { email: email })
+    let user = await db.getOne(collection, { username: email })
+    return user
+}
+model.getGithubUser = async function (ghId) {
+    let user = await db.getOne(collection, { githubId: ghId })
     return user
 }
 module.exports = model
